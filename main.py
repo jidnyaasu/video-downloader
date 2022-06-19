@@ -21,7 +21,10 @@ def get_video(url, folder, mp4):
             ydl.download(url)
 
 
-def main(url, output_folder, mp4=False):
+def main(label, button, url, output_folder, mp4):
     get_video(url, output_folder, mp4)
-
-    return "Download complete!"
+    if mp4:
+        button.config(bg="sky blue")
+    else:
+        button.config(bg="light green")
+    label.config(text="Download complete!")

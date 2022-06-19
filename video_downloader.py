@@ -1,4 +1,5 @@
 import os.path
+from threading import Thread
 import tkinter
 from tkinter import *
 from tkinter import filedialog
@@ -12,14 +13,22 @@ root.geometry("600x400+650+300")
 root.configure(bg="#FCF2D8")
 
 
+def download(mp4=False):
+    if url.get():
+        best.config(bg="red")
+        label.config(text="Downloading..... Please wait")
+        thr = Thread(target=main, args=[label, best, url.get(), output_folder.get(), mp4])
+        thr.start()
+    else:
+        label.config(text="Please paste video url")
+
+
 def download_best():
-    complete = main(url.get(), output_folder.get())
-    Label(root, text=complete, bg="#FCF2D8", fg="blue").place(anchor=CENTER, relx=0.5, rely=0.85)
+    download()
 
 
 def download_best_mp4():
-    complete = main(url.get(), output_folder.get(), True)
-    Label(root, text=complete, bg="#FCF2D8", fg="blue").place(anchor=CENTER, relx=0.5, rely=0.85)
+    download(mp4=True)
 
 
 def paste():
@@ -67,18 +76,30 @@ Button(root, text="Select Folder", command=ask_folder, bg="pink").place(
 )
 
 # Download buttons
-Button(
+# Best quality button
+best = Button(
     root,
     text="Download Best\nQuality Available\nin Any Format",
     bg="light green",
     command=download_best,
-).place(anchor=CENTER, relx=0.35, rely=0.72)
-Button(
+)
+best.pack()
+best.place(anchor=CENTER, relx=0.35, rely=0.72)
+
+# mp4 format button
+mp4 = Button(
     root,
     text="Download Best\nQuality Available\nin mp4 Format",
     bg="sky blue",
     command=download_best_mp4,
-).place(anchor=CENTER, relx=0.65, rely=0.72)
+)
+mp4.pack()
+mp4.place(anchor=CENTER, relx=0.65, rely=0.72)
+
+# Status Message
+label = Label(root, text="", bg="#FCF2D8", fg="blue")
+label.pack()
+label.place(anchor=CENTER, relx=0.5, rely=0.85)
 
 # Author info
 font = Font(family="Helvetica", weight="bold")
