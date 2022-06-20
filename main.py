@@ -1,5 +1,4 @@
 import os
-from tarfile import ExtractError
 import yt_dlp
 
 
