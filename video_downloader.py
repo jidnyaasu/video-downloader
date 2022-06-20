@@ -15,25 +15,20 @@ class DownloaderGui:
         self.root.geometry("600x400+650+300")
         self.root.configure(bg="#FCF2D8")
 
-        # Label
-        Label(self.root, text="Please paste Video Link here :  ", bg="#FCF2D8").place(
-            anchor=CENTER, relx=0.5, rely=0.05
-        )
-
         # url textbox
+        self.url_label = Label(self.root, text="Please paste Video Link here :  ", bg="#FCF2D8")
+        self.url_label.place(anchor=CENTER, relx=0.5, rely=0.05)
         self.url = Entry(self.root, width=50, borderwidth=3, bg="alice blue")
         self.url.pack()
         self.url.place(anchor=CENTER, relx=0.5, rely=0.15)
 
         # Paste button
-        Button(self.root, text="Paste", command=self.paste, bg="pink").place(
-            anchor=CENTER, relx=0.5, rely=0.25
-        )
+        self.paste_button = Button(self.root, text="Paste", command=self.paste, bg="pink")
+        self.paste_button.place(anchor=CENTER, relx=0.5, rely=0.25)
 
         # Output folder textbox
-        Label(self.root, text="Please select output folder :  ", bg="#FCF2D8").place(
-            anchor=CENTER, relx=0.5, rely=0.35
-        )
+        self.output_folder_label = Label(self.root, text="Please select output folder :  ", bg="#FCF2D8")
+        self.output_folder_label.place(anchor=CENTER, relx=0.5, rely=0.35)
         self.output_folder = Entry(self.root, width=50, borderwidth=3, bg="alice blue")
         self.output_folder.pack()
         self.output_folder.place(anchor=CENTER, relx=0.5, rely=0.45)
@@ -46,17 +41,16 @@ class DownloaderGui:
         self.output_folder.insert(0, self.videos_directory)
 
         # Select folder button
-        Button(self.root, text="Select Folder", command=self.ask_folder, bg="pink").place(
-            anchor=CENTER, relx=0.5, rely=0.55
-        )
+        self.select_folder_button = Button(self.root, text="Select Folder", command=self.ask_folder, bg="pink")
+        self.select_folder_button.place(anchor=CENTER, relx=0.5, rely=0.55)
 
         # Download buttons
         # Best quality button
         self.best_button = Button(
             self.root,
-            text="Download Best\nQuality Available\nin Any Format",
+            text="Download",
             bg="light green",
-            command=self.download_best,
+            command=None,
         )
         self.best_button.pack()
         self.best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
@@ -66,7 +60,7 @@ class DownloaderGui:
             self.root,
             text="Download Best\nQuality Available\nin mp4 Format",
             bg="sky blue",
-            command=self.download_best_mp4,
+            command=None,
         )
         self.mp4_button.pack()
         self.mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
@@ -87,25 +81,25 @@ class DownloaderGui:
 
 
 
-    def download(self, mp4=False):
-        if self.url.get():
-            if mp4:
-                self.mp4_button.config(bg="red")
-                thr = Thread(target=main, args=[self.label, self.mp4_button, self.url.get(), self.output_folder.get(), mp4])
-            else:
-                self.best_button.config(bg="red")
-                thr = Thread(target=main, args=[self.label, self.best_button, self.url.get(), self.output_folder.get(), mp4])
-            thr.start()
-        else:
-            self.label.config(text="Please paste video url", fg="red")
+    # def download(self, mp4=False):
+    #     if self.url.get():
+    #         if mp4:
+    #             self.mp4_button.config(bg="red")
+    #             thr = Thread(target=main, args=[self.label, self.mp4_button, self.url.get(), self.output_folder.get(), mp4])
+    #         else:
+    #             self.best_button.config(bg="red")
+    #             thr = Thread(target=main, args=[self.label, self.best_button, self.url.get(), self.output_folder.get(), mp4])
+    #         thr.start()
+    #     else:
+    #         self.label.config(text="Please paste video url", fg="red")
 
 
-    def download_best(self):
-        self.download()
+    # def download_best(self):
+    #     self.download()
 
 
-    def download_best_mp4(self):
-        self.download(mp4=True)
+    # def download_best_mp4(self):
+    #     self.download(mp4=True)
 
 
     def paste(self):
