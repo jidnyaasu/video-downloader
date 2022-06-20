@@ -4,7 +4,9 @@ from video_downloader import DownloaderGui
 from main import main
 
 
-app = DownloaderGui("VideoDownloaderApp")
+root = Tk()
+title = "VideoDownloaderApp"
+app = DownloaderGui(root, title)
 
 def download(app, mp4=False):
     if app.url.get():
@@ -19,11 +21,15 @@ def download(app, mp4=False):
         app.label.config(text="Please paste video url", fg="red")
 
 
+def download_best():
+    download(app)
+
+
 def download_best_mp4():
     download(app, mp4=True)
 
 
-app.url_label = Label(app.root, text="Changed text")
-app.url_label.pack()
+# app.url_label.config(text="Changed text")
+app.best_button.config(command=download_best)
 
-app.best_button.config(text="Download Best\nQuality Available\nin Any Format", command=download_best_mp4)
+root.mainloop()

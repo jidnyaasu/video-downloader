@@ -9,8 +9,8 @@ from main import main
 
 class DownloaderGui:
 
-    def __init__(self, title):
-        self.root = Tk()
+    def __init__(self, root, title):
+        self.root = root
         self.root.title(title)
         self.root.geometry("600x400+650+300")
         self.root.configure(bg="#FCF2D8")
@@ -48,9 +48,9 @@ class DownloaderGui:
         # Best quality button
         self.best_button = Button(
             self.root,
-            text="Download",
+            text="",
             bg="light green",
-            command=None,
+            # command=None,
         )
         self.best_button.pack()
         self.best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
@@ -58,9 +58,9 @@ class DownloaderGui:
         # mp4 format button
         self.mp4_button = Button(
             self.root,
-            text="Download Best\nQuality Available\nin mp4 Format",
+            text="",
             bg="sky blue",
-            command=None,
+            # command=None,
         )
         self.mp4_button.pack()
         self.mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
@@ -77,7 +77,7 @@ class DownloaderGui:
         )
         author.place(anchor=CENTER, relx=0.5, rely=0.95)
 
-        self.root.mainloop()
+        # self.root.mainloop()
 
 
 
