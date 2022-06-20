@@ -1,4 +1,4 @@
-import os.path
+import os
 from threading import Thread
 import tkinter
 from tkinter import *
@@ -15,12 +15,15 @@ root.configure(bg="#FCF2D8")
 
 def download(mp4=False):
     if url.get():
-        best.config(bg="red")
-        label.config(text="Downloading..... Please wait")
-        thr = Thread(target=main, args=[label, best, url.get(), output_folder.get(), mp4])
+        if mp4:
+            mp4_button.config(bg="red")
+            thr = Thread(target=main, args=[label, mp4_button, url.get(), output_folder.get(), mp4])
+        else:
+            best_button.config(bg="red")
+            thr = Thread(target=main, args=[label, best_button, url.get(), output_folder.get(), mp4])
         thr.start()
     else:
-        label.config(text="Please paste video url")
+        label.config(text="Please paste video url", fg="red")
 
 
 def download_best():
@@ -38,7 +41,10 @@ def paste():
 
 
 def ask_folder():
-    folder = filedialog.askdirectory() + "/"
+    if os.name == "nt":
+        folder = filedialog.askdirectory() + "\\"
+    else:
+        folder = filedialog.askdirectory() + "/"
     output_folder.delete(0, tkinter.END)
     output_folder.insert(0, folder)
 
@@ -67,7 +73,10 @@ output_folder.pack()
 output_folder.place(anchor=CENTER, relx=0.5, rely=0.45)
 
 # Defaulting output folder to Videos directory
-videos_directory = os.path.expanduser("~") + "/Videos/"
+if os.name == "nt":
+    videos_directory = os.path.expanduser("~") + "\\Videos\\"
+else:
+    videos_directory = os.path.expanduser("~") + "/Videos/"
 output_folder.insert(0, videos_directory)
 
 # Select folder button
@@ -77,27 +86,27 @@ Button(root, text="Select Folder", command=ask_folder, bg="pink").place(
 
 # Download buttons
 # Best quality button
-best = Button(
+best_button = Button(
     root,
     text="Download Best\nQuality Available\nin Any Format",
     bg="light green",
     command=download_best,
 )
-best.pack()
-best.place(anchor=CENTER, relx=0.35, rely=0.72)
+best_button.pack()
+best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
 
 # mp4 format button
-mp4 = Button(
+mp4_button = Button(
     root,
     text="Download Best\nQuality Available\nin mp4 Format",
     bg="sky blue",
     command=download_best_mp4,
 )
-mp4.pack()
-mp4.place(anchor=CENTER, relx=0.65, rely=0.72)
+mp4_button.pack()
+mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
 
 # Status Message
-label = Label(root, text="", bg="#FCF2D8", fg="blue")
+label = Label(root, text="", bg="#FCF2D8")
 label.pack()
 label.place(anchor=CENTER, relx=0.5, rely=0.85)
 

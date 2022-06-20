@@ -1,4 +1,5 @@
 import os
+from tarfile import ExtractError
 import yt_dlp
 
 
@@ -22,9 +23,15 @@ def get_video(url, folder, mp4):
 
 
 def main(label, button, url, output_folder, mp4):
-    get_video(url, output_folder, mp4)
-    if mp4:
-        button.config(bg="sky blue")
-    else:
-        button.config(bg="light green")
-    label.config(text="Download complete!")
+    label.config(text="Downloading..... Please wait", fg="blue")
+    try:
+        get_video(url, output_folder, mp4)
+        label.config(text="Download complete!", fg="green")
+    except Exception as e:
+        label.config(text=f"Please enter valid url", fg="red")
+    
+    finally:
+        if mp4:
+            button.config(bg="sky blue")
+        else:
+            button.config(bg="light green")
