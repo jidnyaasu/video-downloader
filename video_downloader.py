@@ -1,19 +1,20 @@
 import os
-from threading import Thread
 import tkinter
 from tkinter import *
 from tkinter import filedialog
 from tkinter.font import Font
+from PIL import Image, ImageTk
 
-from main import main
 
 class DownloaderGui:
 
     def __init__(self, root, title):
         self.root = root
         self.root.title(title)
-        self.root.geometry("600x400+650+300")
+        self.root.geometry("900x700+650+300")
         self.root.configure(bg="#FCF2D8")
+        self.top = ImageTk.PhotoImage(file="youtube.png")
+        Label(self.root, image=self.top).pack()
 
         # url textbox
         self.url_label = Label(self.root, text="Please paste Video Link here :  ", bg="#FCF2D8")
@@ -50,7 +51,6 @@ class DownloaderGui:
             self.root,
             text="",
             bg="light green",
-            # command=None,
         )
         self.best_button.pack()
         self.best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
@@ -60,7 +60,6 @@ class DownloaderGui:
             self.root,
             text="",
             bg="sky blue",
-            # command=None,
         )
         self.mp4_button.pack()
         self.mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
@@ -76,30 +75,6 @@ class DownloaderGui:
             self.root, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
         )
         author.place(anchor=CENTER, relx=0.5, rely=0.95)
-
-        # self.root.mainloop()
-
-
-
-    # def download(self, mp4=False):
-    #     if self.url.get():
-    #         if mp4:
-    #             self.mp4_button.config(bg="red")
-    #             thr = Thread(target=main, args=[self.label, self.mp4_button, self.url.get(), self.output_folder.get(), mp4])
-    #         else:
-    #             self.best_button.config(bg="red")
-    #             thr = Thread(target=main, args=[self.label, self.best_button, self.url.get(), self.output_folder.get(), mp4])
-    #         thr.start()
-    #     else:
-    #         self.label.config(text="Please paste video url", fg="red")
-
-
-    # def download_best(self):
-    #     self.download()
-
-
-    # def download_best_mp4(self):
-    #     self.download(mp4=True)
 
 
     def paste(self):

@@ -29,7 +29,6 @@ def download_best_mp4():
     download(app, mp4=True)
 
 
-# app.url_label.config(text="Changed text")
 app.best_button.config(command=download_best)
 
 root.mainloop()
