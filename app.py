@@ -29,6 +29,7 @@ def download_best_mp4():
     download(app, mp4=True)
 
 
-app.best_button.config(command=download_best)
+app.best_button.config(text="Download best quality\navailable in any format", command=download_best)
+app.mp4_button.config(text="Download best quality\navailable in mp4 format", command=download_best_mp4)
 
 root.mainloop()

@@ -3,7 +3,6 @@ import tkinter
 from tkinter import *
 from tkinter import filedialog
 from tkinter.font import Font
-from PIL import Image, ImageTk
 
 
 class DownloaderGui:
@@ -11,11 +10,9 @@ class DownloaderGui:
     def __init__(self, root, title):
         self.root = root
         self.root.title(title)
-        self.root.geometry("900x700+650+300")
+        self.root.geometry("800x700+550+120")
         self.root.configure(bg="#FCF2D8")
-        self.top = ImageTk.PhotoImage(file="youtube.png")
-        Label(self.root, image=self.top).pack()
-
+        
         # url textbox
         self.url_label = Label(self.root, text="Please paste Video Link here :  ", bg="#FCF2D8")
         self.url_label.place(anchor=CENTER, relx=0.5, rely=0.05)
