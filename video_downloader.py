@@ -61,7 +61,6 @@ first_label.pack(expand=True)
 # url textbox
 url = Entry(upper_frame, width=50, borderwidth=3, bg="alice blue")
 url.pack(expand=True)
-# url.place(anchor=CENTER, relx=0.5, rely=0.15)
 
 # Paste button
 paste_button = Button(upper_frame, text="Paste", command=paste, bg="pink")
@@ -72,7 +71,6 @@ output_folder_textbox = Label(upper_frame, text="Please select output folder :  
 output_folder_textbox.pack(expand=True)
 output_folder = Entry(upper_frame, width=50, borderwidth=3, bg="alice blue")
 output_folder.pack(expand=True)
-# output_folder.place(anchor=CENTER, relx=0.5, rely=0.45)
 
 # Defaulting output folder to Videos directory
 if os.name == "nt":
@@ -99,8 +97,6 @@ best_button = Button(
 )
 best_button.grid(row=0, column=0, padx=5, pady=5)
 best_button.rowconfigure(0, weight=1)
-# best_button.pack(side="left", anchor="e", expand=True)
-# best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
 
 # mp4 format button
 mp4_button = Button(
@@ -110,8 +106,6 @@ mp4_button = Button(
     command=download_best_mp4,
 )
 mp4_button.grid(row=0, column=1, padx=5, pady=5)
-# mp4_button.pack(side="right", anchor="w", expand=True)
-# mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
 
 # Bottom section
 # Bottom frame
@@ -121,7 +115,6 @@ bottom_frame.pack(side="bottom", fill="both", expand=True)
 # Status Message
 status_message = Label(bottom_frame, text="", bg="#FCF2D8")
 status_message.pack(expand=True)
-# label.place(anchor=CENTER, relx=0.5, rely=0.85)
 
 # Author info
 font = Font(family="Helvetica", weight="bold")
@@ -129,6 +122,5 @@ author = Label(
     bottom_frame, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
 )
 author.pack(expand=True)
-# author.place(anchor=CENTER, relx=0.5, rely=0.95)
 
 root.mainloop()
