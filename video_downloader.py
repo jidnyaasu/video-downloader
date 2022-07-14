@@ -95,7 +95,7 @@ best_button = Button(
     bg="light green",
     command=download_best,
 )
-best_button.grid(row=0, column=0, padx=5, pady=5)
+best_button.grid(row=0, column=0, padx=25, pady=5)
 best_button.rowconfigure(0, weight=1)
 
 # mp4 format button
@@ -105,21 +105,21 @@ mp4_button = Button(
     bg="sky blue",
     command=download_best_mp4,
 )
-mp4_button.grid(row=0, column=1, padx=5, pady=5)
+mp4_button.grid(row=0, column=1, padx=25, pady=5)
 
-# Bottom section
-# Bottom frame
-bottom_frame = Frame(root, bg="#FCF2D8")
-bottom_frame.pack(side="bottom", fill="both", expand=True)
+# Lower section
+# Lower frame
+lower_frame = Frame(root, bg="#FCF2D8")
+lower_frame.pack(side="bottom", fill="both", expand=True)
 
 # Status Message
-status_message = Label(bottom_frame, text="", bg="#FCF2D8")
+status_message = Label(lower_frame, text="", bg="#FCF2D8")
 status_message.pack(expand=True)
 
 # Author info
 font = Font(family="Helvetica", weight="bold")
 author = Label(
-    bottom_frame, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
+    lower_frame, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
 )
 author.pack(expand=True)
 
