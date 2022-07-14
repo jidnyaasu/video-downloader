@@ -17,13 +17,13 @@ def download(mp4=False):
     if url.get():
         if mp4:
             mp4_button.config(bg="red")
-            thr = Thread(target=main, args=[label, mp4_button, url.get(), output_folder.get(), mp4])
+            thr = Thread(target=main, args=[status_message, mp4_button, url.get(), output_folder.get(), mp4])
         else:
             best_button.config(bg="red")
-            thr = Thread(target=main, args=[label, best_button, url.get(), output_folder.get(), mp4])
+            thr = Thread(target=main, args=[status_message, best_button, url.get(), output_folder.get(), mp4])
         thr.start()
     else:
-        label.config(text="Please paste video url", fg="red")
+        status_message.config(text="Please paste video url", fg="red")
 
 
 def download_best():
@@ -49,28 +49,30 @@ def ask_folder():
     output_folder.insert(0, folder)
 
 
+# Upper section
+# Upper frame
+upper_frame = Frame(root, bg="#FCF2D8")
+upper_frame.pack(side="top", fill="both", expand=True)
+
 # Label
-Label(root, text="Please paste Video Link here :  ", bg="#FCF2D8").place(
-    anchor=CENTER, relx=0.5, rely=0.05
-)
+first_label = Label(upper_frame, text="Please paste Video Link here :  ", bg="#FCF2D8")
+first_label.pack(expand=True)
 
 # url textbox
-url = Entry(root, width=50, borderwidth=3, bg="alice blue")
-url.pack()
-url.place(anchor=CENTER, relx=0.5, rely=0.15)
+url = Entry(upper_frame, width=50, borderwidth=3, bg="alice blue")
+url.pack(expand=True)
+# url.place(anchor=CENTER, relx=0.5, rely=0.15)
 
 # Paste button
-Button(root, text="Paste", command=paste, bg="pink").place(
-    anchor=CENTER, relx=0.5, rely=0.25
-)
+paste_button = Button(upper_frame, text="Paste", command=paste, bg="pink")
+paste_button.pack(expand=True)
 
 # Output folder textbox
-Label(root, text="Please select output folder :  ", bg="#FCF2D8").place(
-    anchor=CENTER, relx=0.5, rely=0.35
-)
-output_folder = Entry(root, width=50, borderwidth=3, bg="alice blue")
-output_folder.pack()
-output_folder.place(anchor=CENTER, relx=0.5, rely=0.45)
+output_folder_textbox = Label(upper_frame, text="Please select output folder :  ", bg="#FCF2D8")
+output_folder_textbox.pack(expand=True)
+output_folder = Entry(upper_frame, width=50, borderwidth=3, bg="alice blue")
+output_folder.pack(expand=True)
+# output_folder.place(anchor=CENTER, relx=0.5, rely=0.45)
 
 # Defaulting output folder to Videos directory
 if os.name == "nt":
@@ -80,41 +82,53 @@ else:
 output_folder.insert(0, videos_directory)
 
 # Select folder button
-Button(root, text="Select Folder", command=ask_folder, bg="pink").place(
-    anchor=CENTER, relx=0.5, rely=0.55
-)
+select_folder_button = Button(upper_frame, text="Select Folder", command=ask_folder, bg="pink")
+select_folder_button.pack(expand=True)
 
-# Download buttons
+# Download buttons section
+# Button frame
+button_frame = Frame(root, bg="#FCF2D8")
+button_frame.pack(expand=True)
+
 # Best quality button
 best_button = Button(
-    root,
+    button_frame,
     text="Download Best\nQuality Available\nin Any Format",
     bg="light green",
     command=download_best,
 )
-best_button.pack()
-best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
+best_button.grid(row=0, column=0, padx=5, pady=5)
+best_button.rowconfigure(0, weight=1)
+# best_button.pack(side="left", anchor="e", expand=True)
+# best_button.place(anchor=CENTER, relx=0.35, rely=0.72)
 
 # mp4 format button
 mp4_button = Button(
-    root,
+    button_frame,
     text="Download Best\nQuality Available\nin mp4 Format",
     bg="sky blue",
     command=download_best_mp4,
 )
-mp4_button.pack()
-mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
+mp4_button.grid(row=0, column=1, padx=5, pady=5)
+# mp4_button.pack(side="right", anchor="w", expand=True)
+# mp4_button.place(anchor=CENTER, relx=0.65, rely=0.72)
+
+# Bottom section
+# Bottom frame
+bottom_frame = Frame(root, bg="#FCF2D8")
+bottom_frame.pack(side="bottom", fill="both", expand=True)
 
 # Status Message
-label = Label(root, text="", bg="#FCF2D8")
-label.pack()
-label.place(anchor=CENTER, relx=0.5, rely=0.85)
+status_message = Label(bottom_frame, text="", bg="#FCF2D8")
+status_message.pack(expand=True)
+# label.place(anchor=CENTER, relx=0.5, rely=0.85)
 
 # Author info
 font = Font(family="Helvetica", weight="bold")
 author = Label(
-    root, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
+    bottom_frame, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
 )
-author.place(anchor=CENTER, relx=0.5, rely=0.95)
+author.pack(expand=True)
+# author.place(anchor=CENTER, relx=0.5, rely=0.95)
 
 root.mainloop()
