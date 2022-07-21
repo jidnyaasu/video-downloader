@@ -8,6 +8,7 @@ root = Tk()
 title = "VideoDownloaderApp"
 app = DownloaderGui(root, title)
 
+
 def download(app, mp4=False):
     if app.url.get():
         if mp4:
