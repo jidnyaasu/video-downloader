@@ -11,16 +11,19 @@ root = Tk()
 root.title("Video Downloader")
 root.geometry("600x400+650+300")
 root.configure(bg="#FCF2D8")
+root.config(pady=5, padx=5)
 
 
 def download(mp4=False):
     if url.get():
+        mp4_button.config(state=DISABLED)
+        best_button.config(state=DISABLED)
         if mp4:
-            mp4_button.config(bg="red")
-            thr = Thread(target=main, args=[status_message, mp4_button, url.get(), output_folder.get(), mp4])
+            thr = Thread(target=main,
+                         args=[status_message, mp4_button, best_button, url.get(), output_folder.get(), mp4])
         else:
-            best_button.config(bg="red")
-            thr = Thread(target=main, args=[status_message, best_button, url.get(), output_folder.get(), mp4])
+            thr = Thread(target=main,
+                         args=[status_message, mp4_button, best_button, url.get(), output_folder.get(), mp4])
         thr.start()
     else:
         status_message.config(text="Please paste video url", fg="red")
@@ -52,25 +55,25 @@ def ask_folder():
 # Upper section
 # Upper frame
 upper_frame = Frame(root, bg="#FCF2D8")
-upper_frame.pack(side="top", fill="both", expand=True)
+upper_frame.pack(side="top", fill="both", padx=5, pady=5, expand=True)
 
 # Label
 first_label = Label(upper_frame, text="Please paste Video Link here :  ", bg="#FCF2D8")
-first_label.pack(expand=True)
+first_label.pack(expand=True, padx=5, pady=5)
 
 # url textbox
 url = Entry(upper_frame, width=50, borderwidth=3, bg="alice blue")
-url.pack(expand=True)
+url.pack(expand=True, padx=5, pady=5)
 
 # Paste button
 paste_button = Button(upper_frame, text="Paste", command=paste, bg="pink")
-paste_button.pack(expand=True)
+paste_button.pack(expand=True, padx=5, pady=5)
 
 # Output folder textbox
 output_folder_textbox = Label(upper_frame, text="Please select output folder :  ", bg="#FCF2D8")
-output_folder_textbox.pack(expand=True)
+output_folder_textbox.pack(expand=True, padx=5, pady=5)
 output_folder = Entry(upper_frame, width=50, borderwidth=3, bg="alice blue")
-output_folder.pack(expand=True)
+output_folder.pack(expand=True, padx=5, pady=5)
 
 # Defaulting output folder to Videos directory
 if os.name == "nt":
@@ -81,12 +84,12 @@ output_folder.insert(0, videos_directory)
 
 # Select folder button
 select_folder_button = Button(upper_frame, text="Select Folder", command=ask_folder, bg="pink")
-select_folder_button.pack(expand=True)
+select_folder_button.pack(expand=True, padx=5, pady=5)
 
 # Download buttons section
 # Button frame
 button_frame = Frame(root, bg="#FCF2D8")
-button_frame.pack(expand=True)
+button_frame.pack(expand=True, padx=5, pady=5)
 
 # Best quality button
 best_button = Button(
@@ -110,7 +113,7 @@ mp4_button.grid(row=0, column=1, padx=25, pady=5)
 # Lower section
 # Lower frame
 lower_frame = Frame(root, bg="#FCF2D8")
-lower_frame.pack(side="bottom", fill="both", expand=True)
+lower_frame.pack(side="bottom", fill="both", expand=True, padx=5, pady=5)
 
 # Status Message
 status_message = Label(lower_frame, text="", bg="#FCF2D8")

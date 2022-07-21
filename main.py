@@ -1,5 +1,6 @@
 import os
 import yt_dlp
+from tkinter import *
 
 
 def get_video(url, folder, mp4):
@@ -21,16 +22,15 @@ def get_video(url, folder, mp4):
             ydl.download(url)
 
 
-def main(label, button, url, output_folder, mp4):
+def main(label, mp4_button, best_button, url, output_folder, mp4):
     label.config(text="Downloading..... Please wait", fg="blue")
     try:
         get_video(url, output_folder, mp4)
         label.config(text="Download complete!", fg="green")
     except Exception as e:
         label.config(text=f"Please enter valid url", fg="red")
+        print(e)
     
     finally:
-        if mp4:
-            button.config(bg="sky blue")
-        else:
-            button.config(bg="light green")
+        mp4_button.config(state=NORMAL)
+        best_button.config(state=NORMAL)
