@@ -11,15 +11,17 @@ app = DownloaderGui(root, title)
 
 def download(app, mp4=False):
     if app.url.get():
+        app.best_button.config(state=DISABLED)
+        app.mp4_button.config(state=DISABLED)
         if mp4:
-            app.mp4_button.config(bg="red")
-            thr = Thread(target=main, args=[app.label, app.mp4_button, app.url.get(), app.output_folder.get(), mp4])
+            # app.mp4_button.config(bg="red")
+            thr = Thread(target=main, args=[app, mp4])
         else:
-            app.best_button.config(bg="red")
-            thr = Thread(target=main, args=[app.label, app.best_button, app.url.get(), app.output_folder.get(), mp4])
+            # app.best_button.config(bg="red")
+            thr = Thread(target=main, args=[app, mp4])
         thr.start()
     else:
-        app.label.config(text="Please paste video url", fg="red")
+        app.status_message.config(text="Please paste video url", fg="red")
 
 
 def download_best():
