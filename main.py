@@ -21,16 +21,14 @@ def get_video(url, folder, mp4):
             ydl.download(url)
 
 
-def main(label, button, url, output_folder, mp4):
-    label.config(text="Downloading..... Please wait", fg="blue")
+def main(app, mp4):
+    app.status_message.config(text="Downloading..... Please wait", fg="blue")
     try:
-        get_video(url, output_folder, mp4)
-        label.config(text="Download complete!", fg="green")
+        get_video(app.url.get(), app.output_folder.get(), mp4)
+        app.status_message.config(text="Download complete!", fg="green")
     except Exception as e:
-        label.config(text=f"Please enter valid url", fg="red")
+        app.status_message.config(text=f"Please enter valid url", fg="red")
     
     finally:
-        if mp4:
-            button.config(bg="sky blue")
-        else:
-            button.config(bg="light green")
+        app.best_button.config(state="normal")
+        app.mp4_button.config(state="normal")
