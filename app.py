@@ -14,10 +14,8 @@ def download(local_app, mp4=False):
         local_app.best_button.config(state=DISABLED)
         local_app.mp4_button.config(state=DISABLED)
         if mp4:
-            # app.mp4_button.config(bg="red")
             thr = Thread(target=main, args=[local_app, mp4])
         else:
-            # app.best_button.config(bg="red")
             thr = Thread(target=main, args=[local_app, mp4])
         thr.start()
     else:
