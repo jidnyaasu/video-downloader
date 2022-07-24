@@ -28,6 +28,7 @@ def main(app, mp4):
         app.status_message.config(text="Download complete!", fg="green")
     except Exception as e:
         app.status_message.config(text=f"Please enter valid url", fg="red")
+        print(e)
     
     finally:
         app.best_button.config(state="normal")

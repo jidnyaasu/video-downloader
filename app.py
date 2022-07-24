@@ -9,19 +9,19 @@ title = "VideoDownloaderApp"
 app = DownloaderGui(root, title)
 
 
-def download(app, mp4=False):
-    if app.url.get():
-        app.best_button.config(state=DISABLED)
-        app.mp4_button.config(state=DISABLED)
+def download(local_app, mp4=False):
+    if local_app.url.get():
+        local_app.best_button.config(state=DISABLED)
+        local_app.mp4_button.config(state=DISABLED)
         if mp4:
             # app.mp4_button.config(bg="red")
-            thr = Thread(target=main, args=[app, mp4])
+            thr = Thread(target=main, args=[local_app, mp4])
         else:
             # app.best_button.config(bg="red")
-            thr = Thread(target=main, args=[app, mp4])
+            thr = Thread(target=main, args=[local_app, mp4])
         thr.start()
     else:
-        app.status_message.config(text="Please paste video url", fg="red")
+        local_app.status_message.config(text="Please paste video url", fg="red")
 
 
 def download_best():

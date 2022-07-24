@@ -62,18 +62,16 @@ class DownloaderGui:
         self.status_message.grid(column=0, row=7, pady=(5, 10), columnspan=2)
 
         # Author info
-        font = Font(family="Helvetica", weight="bold")
+        author_font = Font(family="Helvetica", weight="bold")
         author = Label(
-            self.root, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=font
+            self.root, text="Software by: Saurabh Joshi", fg="maroon", bg="#FCF2D8", font=author_font
         )
         author.grid(column=0, row=8, columnspan=2, pady=(10, 0))
-
 
     def paste(self):
         clipboard = self.root.clipboard_get()
         self.url.delete(0, tkinter.END)
         self.url.insert(0, clipboard)
-
 
     def ask_folder(self):
         folder = filedialog.askdirectory()
