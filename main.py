@@ -1,6 +1,5 @@
 import os
 import yt_dlp
-from tkinter import *
 
 
 def get_video(url, folder, mp4):
@@ -32,5 +31,5 @@ def main(label, mp4_button, best_button, url, output_folder, mp4):
         print(e)
     
     finally:
-        mp4_button.config(state=NORMAL)
-        best_button.config(state=NORMAL)
+        mp4_button.config(state="normal")
+        best_button.config(state="normal")
