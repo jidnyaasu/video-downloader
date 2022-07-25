@@ -1,6 +1,6 @@
 from threading import Thread
 from tkinter import *
-from video_downloader import DownloaderGui
+from ui import DownloaderGui
 from main import main
 
 
